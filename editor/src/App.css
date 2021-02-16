@@ -1,0 +1,89 @@
+*, *::before, *::after {  /*box sizzing*/
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.container {    /*make image expand on screen for edit*/
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr auto; /* narrow small for big image*/
+  grid-template-areas: 
+    "image sidebar" /*top left item is the image and side bar top left*/
+    "slider sidebar";  /*top left item is the image */
+  height: 100vh;
+  width: 100vw;
+  background-color: #DADADA; 
+}
+.upload{
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.main-image {    
+  grid-area: image;
+  background-image: url('./Logo1000.png');
+  height: 100%;
+  background-position: top center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.sidebar { /*slider in right size */
+  grid-area: sidebar;
+  background-color: hsl(145, 100%, 86%);
+  border-left: 1px solid hsl(120, 3%, 8%);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.sidebar-item {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: hsl(240, 27%, 96%);
+  padding: 1rem;
+  position: relative;
+  transition: background-color 150ms;
+}
+
+.sidebar-item:hover, .sidebar-item:focus {  /*to know where the mouse point*/
+  background-color: hsl(22, 100%, 76%);
+}
+
+.sidebar-item.active {
+  background-color: hsl(135, 97%, 48%);
+}
+
+.sidebar-item::after {
+  content: '';
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  bottom: 0;
+  height: 1px;
+  background-color: hsl(0, 0%, 3%);
+}
+
+.sidebar-item:last-child::after {
+  display: none;
+}
+
+.slider-container {   /*silder place for edditing  */
+  grid-area: slider;
+  margin-top: 2rem;
+  padding: 2rem;
+}
+
+.slider { /*the slider itself */
+  width: 100%;
+  cursor: pointer;
+}
